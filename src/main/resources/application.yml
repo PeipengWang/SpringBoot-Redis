@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: SpringBoot-Redis
+  # Redis配置
+  data:
+    redis:
+      # Redis服务器地址
+      host: 152.136.246.11
+      # Redis服务器端口
+      port: 6379
+      # Redis密码（如果没有设置密码，可以注释掉这行）
+      # password: your_password
+      # 数据库索引（默认为0）
+      database: 0
+      # 连接超时时间（毫秒）
+#      timeout: 2000ms
+      # 连接池配置
+      lettuce:
+        pool:
+          # 连接池最大连接数
+          max-active: 8
+          # 连接池最大阻塞等待时间（毫秒）
+          max-wait: -1ms
+          # 连接池最大空闲连接数
+          max-idle: 8
+          # 连接池最小空闲连接数
+          min-idle: 0
+# 日志配置
+logging:
+  level:
+    # Redis相关日志级别
+    org.springframework.data.redis: DEBUG
+    com.example.springbootredis: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# 服务器配置
+server:
+  port: 8080
