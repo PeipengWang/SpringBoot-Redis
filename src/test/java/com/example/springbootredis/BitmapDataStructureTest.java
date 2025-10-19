@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.List;
@@ -38,12 +39,12 @@ class BitmapDataStructureTest {
         assertTrue(stringRedisTemplate.opsForValue().getBit(bitmapKey, 30));
 
         // 3. BITCOUNT 统计打卡天数
-        Long count = stringRedisTemplate.execute(connection -> connection.bitCount(bitmapKey.getBytes()));
+        Long count = stringRedisTemplate.execute((RedisCallback<Long>) connection -> connection.bitCount(bitmapKey.getBytes()));
         assertNotNull(count);
         assertEquals(3L, count);
 
         // 4. BITFIELD 读取指定范围（示例读取前8位作为有符号整型）
-        List<Long> field = stringRedisTemplate.execute(connection ->
+        List<Long> field = stringRedisTemplate.execute((RedisCallback<List<Long>>) connection ->
                 connection.bitField(bitmapKey.getBytes(), BitFieldSubCommands.create()
                         .get(BitFieldSubCommands.BitFieldType.INT_8)
                         .valueAt(0))

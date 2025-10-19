@@ -3,10 +3,7 @@ package com.example.springbootredis;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.geo.Circle;
-import org.springframework.data.geo.Distance;
-import org.springframework.data.geo.Metric;
-import org.springframework.data.geo.Point;
+import org.springframework.data.geo.*;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.GeoOperations;
@@ -44,7 +41,7 @@ class GeoDataStructureTest {
 
         // 3. GEORADIUS 按圆形范围查询
         Circle circle = new Circle(new Point(121.4737, 31.2304), new Distance(1500, RedisGeoCommands.DistanceUnit.KILOMETERS));
-        List<RedisGeoCommands.GeoLocation<String>> results = geoOps.radius(geoKey, circle).getContent();
+        List<GeoResult<RedisGeoCommands.GeoLocation<String>>> results = geoOps.radius(geoKey, circle).getContent();
         assertNotNull(results);
         assertTrue(results.size() >= 2);
 
