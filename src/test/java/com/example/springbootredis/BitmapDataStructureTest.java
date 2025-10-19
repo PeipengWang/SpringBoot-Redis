@@ -17,6 +17,7 @@ class BitmapDataStructureTest {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+
     @Test
     void testRedisBitmapOperations() {
         System.out.println("=== 开始测试 Redis Bitmap 数据结构 ===");
