@@ -167,7 +167,7 @@ public class FormulaEvaluationService {
         }
         
         // 添加常用函数
-        addCommonFunctions(context);
+//        addCommonFunctions(context);
         
         return context;
     }
@@ -175,27 +175,27 @@ public class FormulaEvaluationService {
     /**
      * 添加常用函数到上下文
      */
-    private void addCommonFunctions(Map<String, Object> context) {
-        // 添加数学函数
-        context.put("abs", Math::abs);
-        context.put("max", Math::max);
-        context.put("min", Math::min);
-        context.put("sqrt", Math::sqrt);
-        context.put("pow", Math::pow);
-        context.put("sin", Math::sin);
-        context.put("cos", Math::cos);
-        context.put("tan", Math::tan);
-        context.put("log", Math::log);
-        context.put("log10", Math::log10);
-        
-        // 添加时间函数
-        context.put("now", System::currentTimeMillis);
-        
-        // 添加字符串函数
-        context.put("length", (str) -> str != null ? str.toString().length() : 0);
-        context.put("upper", (str) -> str != null ? str.toString().toUpperCase() : "");
-        context.put("lower", (str) -> str != null ? str.toString().toLowerCase() : "");
-    }
+//    private void addCommonFunctions(Map<String, Object> context) {
+//        // 添加数学函数
+//        context.put("abs", Math::abs);
+//        context.put("max", Math::max);
+//        context.put("min", Math::min);
+//        context.put("sqrt", Math::sqrt);
+//        context.put("pow", Math::pow);
+//        context.put("sin", Math::sin);
+//        context.put("cos", Math::cos);
+//        context.put("tan", Math::tan);
+//        context.put("log", Math::log);
+//        context.put("log10", Math::log10);
+//
+//        // 添加时间函数
+//        context.put("now", System::currentTimeMillis);
+//
+//        // 添加字符串函数
+//        context.put("length", (str) -> str != null ? str.toString().length() : 0);
+//        context.put("upper", (str) -> str != null ? str.toString().toUpperCase() : "");
+//        context.put("lower", (str) -> str != null ? str.toString().toLowerCase() : "");
+//    }
     
     /**
      * 验证公式表达式是否有效

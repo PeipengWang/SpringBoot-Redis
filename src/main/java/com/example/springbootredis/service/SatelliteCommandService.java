@@ -34,7 +34,7 @@ public class SatelliteCommandService {
         String commandJson = JSON.toJSONString(command);
 
         HashOperations<String, String, String> hashOps = redisTemplate.opsForHash();
-        hashOps.put(hashKey, command.getId(), commandJson);
+        hashOps.put(hashKey, String.valueOf(command.getId()), commandJson);
 
         // 设置整个 Hash 的过期时间为指令过期时间
         long expireSeconds = java.time.Duration
@@ -102,7 +102,7 @@ public class SatelliteCommandService {
             return false;
         }
         
-        command.setStatus(status);
+//        command.setStatus(status);
         return addCommand(command);
     }
     
@@ -184,7 +184,7 @@ public class SatelliteCommandService {
             List<Command> commands = getCommandsBySatellite(satelliteId);
             for (Command command : commands) {
                 if (command.isExpired()) {
-                    deleteCommand(satelliteId, command.getId());
+                    deleteCommand(satelliteId, String.valueOf(command.getId()));
                     cleanedCount++;
                 }
             }
